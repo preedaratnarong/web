@@ -73,3 +73,34 @@ function closeModal(event, modalId) {
         document.getElementById(modalId).classList.remove('active');
     }
 }
+
+// Scroll Reveal Animations
+document.addEventListener('DOMContentLoaded', () => {
+    // Add reveal class to cards and boxes
+    const cards = document.querySelectorAll('.feature-card, .dash-box');
+    cards.forEach((card, index) => {
+        card.classList.add('reveal');
+        // Stagger effect
+        card.style.transitionDelay = `${(index % 5) * 0.15}s`;
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    };
+
+    const revealOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+});

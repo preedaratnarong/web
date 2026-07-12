@@ -73,6 +73,12 @@ body {
     color: #000;
     box-shadow: var(--glow-gold);
 }
+.dash-box:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
 .btn-gold:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
@@ -312,9 +318,10 @@ body {
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--glow-gold);
-    border-color: var(--gold-main);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 25px rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.6);
+    z-index: 2;
 }
 
 .feature-icon {
@@ -757,4 +764,56 @@ footer {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* --- WOW Animations & Effects --- */
+
+/* Reveal on Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button Shimmer Effect */
+.btn-gold-large, .btn-outline-large, .btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+.btn-gold-large::after, .btn-outline-large::after, .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(45deg) translateX(-100%);
+    animation: shimmer 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes shimmer {
+    0% { transform: rotate(45deg) translateX(-100%); }
+    20% { transform: rotate(45deg) translateX(100%); }
+    100% { transform: rotate(45deg) translateX(100%); }
+}
+
+/* Hero Title Glow */
+.hero-title {
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1); }
+    to { text-shadow: 0 0 25px rgba(212, 175, 55, 0.7), 0 0 50px rgba(212, 175, 55, 0.4); }
+}
+
+/* Soft Floating Element for Brand */
+.brand-name {
+    animation: floatBrand 5s ease-in-out infinite;
+}
+@keyframes floatBrand {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
 }
