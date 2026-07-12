@@ -913,3 +913,31 @@ footer {
     }
 }
 
+/* Nav Menu Highlight (Premium Radio Button) */
+.nav-highlight {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold-main) !important;
+    padding: 6px 14px !important;
+    border-radius: 20px;
+    color: var(--gold-main) !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    animation: pulseNav 2s infinite alternate;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 5px;
+}
+@keyframes pulseNav {
+    from { box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+    to { box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), inset 0 0 10px rgba(212, 175, 55, 0.2); }
+}
+.nav-highlight:hover {
+    background: var(--gold-main) !important;
+    color: #000 !important;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+    transform: translateY(-2px);
+}
+.nav-highlight:hover i {
+    color: #000;
+}
+
