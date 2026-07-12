@@ -817,3 +817,30 @@ footer {
     50% { transform: translateY(-3px); }
     100% { transform: translateY(0); }
 }
+
+/* Radio Card Highlight */
+.radio-card {
+    border: 2px solid var(--gold-main);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+    transform: scale(1.05);
+    z-index: 5;
+    animation: pulseRadio 2s infinite alternate;
+}
+
+@keyframes pulseRadio {
+    from { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+    to { box-shadow: 0 0 35px rgba(212, 175, 55, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.15); }
+}
+
+.radio-card:hover {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 40px rgba(212, 175, 55, 0.8);
+}
+
+.radio-card .feature-icon i {
+    color: var(--gold-main);
+    text-shadow: 0 0 15px var(--gold-main);
+    font-size: 3.2rem;
+}
+
