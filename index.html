@@ -21,6 +21,19 @@
 
     <!-- 1. Header -->
     <header id="header">
+        <!-- Urgent Announcement Bar (Can be hidden by adding 'd-none' class) -->
+        <div id="urgent-announcement" class="urgent-bar">
+            <div class="urgent-label"><i class="ph ph-warning-circle"></i> แจ้งข่าวชุมชน</div>
+            <div class="urgent-marquee-container">
+                <div class="urgent-marquee-text">
+                    ขอแสดงความเสียใจกับครอบครัว... แจ้งกำหนดการสวดพระอภิธรรมศพ ณ ศาลา 1 เวลา 19.00 น. | หากไม่มีประกาศ สามารถปิดแถบนี้ได้โดยลบหรือซ่อนโค้ดนี้
+                </div>
+            </div>
+            <button class="urgent-close" onclick="document.getElementById('urgent-announcement').style.display='none'" title="ปิดประกาศ">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+
         <div class="header-container">
             <div class="logo-area">
                 <img src="assets/logo.png" alt="โลโก้วัดปรกฟ้า" class="logo-img">
