@@ -184,7 +184,8 @@
                 <div class="dash-header">ข่าวสาร & ประกาศ</div>
 
                 <div class="news-list" id="dynamicNewsList">
-                    <p class="text-center text-light" style="padding: 20px 0;"><i class="ph ph-spinner ph-spin" style="margin-right: 5px;"></i> กำลังโหลดข้อมูล...</p>
+                    <p class="text-center text-light" style="padding: 20px 0;"><i class="ph ph-spinner ph-spin"
+                            style="margin-right: 5px;"></i> กำลังโหลดข้อมูล...</p>
                 </div>
 
                 <button class="btn-text center mt-3">ดูข่าวสารทั้งหมด</button>
@@ -197,7 +198,8 @@
 
                 <div class="calendar-grid" id="calendarGrid">
                     <!-- ข้อมูลปฏิทินจะถูกสร้างอัตโนมัติด้วย JavaScript -->
-                    <p class="text-center text-light" style="grid-column: span 7;"><i class="ph ph-spinner ph-spin"></i> กำลังโหลดปฏิทิน...</p>
+                    <p class="text-center text-light" style="grid-column: span 7;"><i class="ph ph-spinner ph-spin"></i>
+                        กำลังโหลดปฏิทิน...</p>
                 </div>
 
                 <button class="btn-text center mt-3" onclick="openModal('calendarModal')">ดูปฏิทินทั้งหมด</button>
@@ -225,8 +227,8 @@
 
             <div class="footer-info">
                 <span><i class="ph ph-map-pin"></i> วัดปรกฟ้า ต.เกาะจันทร์ อ.เกาะจันทร์ จ.ชลบุรี 20240</span>
-                <span><i class="ph ph-phone"></i> 038-xxxxxxx</span>
-                <span><i class="ph ph-envelope-simple"></i> watprokfa@gmail.com</span>
+                <span><i class="ph ph-phone"></i> 081-9965993</span>
+                <span><i class="ph ph-envelope-simple"></i> watprokfac@gmail.com</span>
             </div>
 
             <div class="footer-copyright" style="text-align: center; width: 100%;">
@@ -241,17 +243,40 @@
                 </div>
 
                 <div class="developer-credit"
-                    style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; flex-wrap: wrap;">
                     <span style="color: var(--text-muted); font-size: 0.9rem;">ออกแบบและพัฒนาโดย:</span>
                     <img src="assets/narong.png" alt="ณรงค์ ปรีดารัตน์"
                         style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold-main);">
                     <span style="color: var(--gold-main); font-weight: 500;">ณรงค์ ปรีดารัตน์</span>
+                    <button onclick="openModal('coffeeModal')"
+                       style="display: flex; align-items: center; gap: 5px; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; text-decoration: none; margin-left: 5px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.2); cursor: pointer;"
+                       onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'"
+                       onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'">
+                        <i class="ph ph-coffee" style="color: #ff9f43; font-size: 1rem;"></i> เลี้ยงกาแฟแอดมิน
+                    </button>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Modals -->
+    <!-- Coffee Modal -->
+    <div id="coffeeModal" class="modal-overlay" onclick="closeModal(event, 'coffeeModal')">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <button class="modal-close" onclick="closeModal(null, 'coffeeModal')"><i class="ph ph-x"></i></button>
+            <h2 class="text-gold mb-3"><i class="ph ph-coffee" style="color: #ff9f43;"></i> เลี้ยงกาแฟแอดมิน</h2>
+            <p class="text-light mb-4" style="font-size: 0.95rem;">เพื่อเป็นกำลังใจในการดูแลและพัฒนาระบบเว็บครับ 🧡</p>
+            
+            <div style="background: #fff; padding: 15px; border-radius: 12px; display: inline-block; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                <img src="assets/SCB.jpg" alt="QR Code SCB" style="max-width: 100%; height: auto; border-radius: 8px; max-height: 380px; object-fit: contain;">
+            </div>
+            
+            <div class="mt-4" style="color: #aaa; font-size: 0.9rem;">
+                ขอบพระคุณสำหรับทุกการสนับสนุนครับ 🙏
+            </div>
+        </div>
+    </div>
+
     <!-- Donate Modal -->
     <div id="donateModal" class="modal-overlay" onclick="closeModal(event, 'donateModal')">
         <div class="modal-content">
@@ -311,16 +336,22 @@
         <div class="modal-content" style="max-width: 600px;">
             <button class="modal-close" onclick="closeModal(null, 'calendarModal')"><i class="ph ph-x"></i></button>
             <h2 class="text-gold text-center mb-4">ปฏิทินกิจกรรมวัดปรกฟ้า</h2>
-            
+
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-align: center;">
-                <i class="ph ph-calendar-check" style="font-size: 4rem; color: var(--gold-main); margin-bottom: 15px;"></i>
+                <i class="ph ph-calendar-check"
+                    style="font-size: 4rem; color: var(--gold-main); margin-bottom: 15px;"></i>
                 <h3 style="color: #fff; margin-bottom: 10px;">ระบบปฏิทินกิจกรรมเต็มรูปแบบ</h3>
-                <p style="color: #ccc; margin-bottom: 20px; line-height: 1.6;">กำลังอยู่ในระหว่างการพัฒนา เพื่อให้ญาติโยมสามารถติดตามกำหนดการ งานบุญ และกิจกรรมต่างๆ ของทางวัดได้อย่างสะดวกยิ่งขึ้นครับ</p>
-                
-                <div style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; display: inline-block; width: 100%;">
-                    <h4 style="color: var(--gold-main); margin-bottom: 10px; font-size: 1.1rem;"><i class="ph ph-push-pin"></i> กิจกรรมที่กำลังจะมาถึง</h4>
-                    <ul id="dynamicModalCalendarList" style="color: #ddd; list-style-type: none; padding: 0; margin: 0;">
-                        <p class="text-center text-light" style="padding: 10px 0;"><i class="ph ph-spinner ph-spin" style="margin-right: 5px;"></i> กำลังโหลดข้อมูล...</p>
+                <p style="color: #ccc; margin-bottom: 20px; line-height: 1.6;">กำลังอยู่ในระหว่างการพัฒนา
+                    เพื่อให้ญาติโยมสามารถติดตามกำหนดการ งานบุญ และกิจกรรมต่างๆ ของทางวัดได้อย่างสะดวกยิ่งขึ้นครับ</p>
+
+                <div
+                    style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; display: inline-block; width: 100%;">
+                    <h4 style="color: var(--gold-main); margin-bottom: 10px; font-size: 1.1rem;"><i
+                            class="ph ph-push-pin"></i> กิจกรรมที่กำลังจะมาถึง</h4>
+                    <ul id="dynamicModalCalendarList"
+                        style="color: #ddd; list-style-type: none; padding: 0; margin: 0;">
+                        <p class="text-center text-light" style="padding: 10px 0;"><i class="ph ph-spinner ph-spin"
+                                style="margin-right: 5px;"></i> กำลังโหลดข้อมูล...</p>
                     </ul>
                 </div>
             </div>
