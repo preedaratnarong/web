@@ -30,9 +30,8 @@
         <div id="urgent-announcement" class="urgent-bar">
             <div class="urgent-label"><i class="ph ph-warning-circle"></i> แจ้งข่าวชุมชน</div>
             <div class="urgent-marquee-container">
-                <div class="urgent-marquee-text">
-                    ขอเชิญร่วมทำบุญตักบาตร เนื่องในวันครบรอบวันก่อตั้งโรงเรียน ครบรอบ 65 ปี ณ
-                    โดมเอนกประสงค์โรงเรียนบ้านชุมชนปรกฟ้า เวลา 10.19 น. | ถวายภัตราหารแด่พระสงฆ์
+                <div class="urgent-marquee-text" id="dynamicUrgentText">
+                    <i class="ph ph-spinner ph-spin"></i> กำลังโหลดประกาศ...
                 </div>
             </div>
             <button class="urgent-close" onclick="document.getElementById('urgent-announcement').style.display='none'"
@@ -87,7 +86,7 @@
                 <button class="btn btn-gold-large" onclick="openModal('donateModal')">
                     <i class="ph ph-hands-praying"></i> ร่วมทำบุญออนไลน์
                 </button>
-                <button class="btn btn-outline-large" onclick="scrollToSection('calendar')">
+                <button class="btn btn-outline-large" onclick="openModal('calendarModal')">
                     <i class="ph ph-calendar"></i> ดูปฏิทินกิจกรรม
                 </button>
             </div>
@@ -184,28 +183,8 @@
             <div id="news" class="dash-box news-box">
                 <div class="dash-header">ข่าวสาร & ประกาศ</div>
 
-                <div class="news-list">
-                    <div class="news-item">
-                        <img src="assets/new.png" alt="ข่าว 1">
-                        <div class="news-info">
-                            <h4>ขอเชิญร่วมงานบุญวัดหนองใหญ่ศิริธรรม</h4>
-                            <span class="news-date">8 กันยายน 2567</span>
-                        </div>
-                    </div>
-                    <div class="news-item">
-                        <img src="assets/new.png" alt="ข่าว 2">
-                        <div class="news-info">
-                            <h4>กิจกรรมทำความสะอาดวัดและบริเวณโดยรอบ</h4>
-                            <span class="news-date">5 พฤษภาคม 2567</span>
-                        </div>
-                    </div>
-                    <div class="news-item">
-                        <img src="assets/new.png" alt="ข่าว 3">
-                        <div class="news-info">
-                            <h4>ตารางปฏิบัติธรรมประจำเดือนพฤษภาคม 2567</h4>
-                            <span class="news-date">1 พฤษภาคม 2567</span>
-                        </div>
-                    </div>
+                <div class="news-list" id="dynamicNewsList">
+                    <p class="text-center text-light" style="padding: 20px 0;"><i class="ph ph-spinner ph-spin" style="margin-right: 5px;"></i> กำลังโหลดข้อมูล...</p>
                 </div>
 
                 <button class="btn-text center mt-3">ดูข่าวสารทั้งหมด</button>
@@ -262,7 +241,7 @@
                     <div class="cal-day">31</div>
                 </div>
 
-                <button class="btn-text center mt-3">ดูปฏิทินทั้งหมด</button>
+                <button class="btn-text center mt-3" onclick="openModal('calendarModal')">ดูปฏิทินทั้งหมด</button>
             </div>
 
         </div>
@@ -365,6 +344,27 @@
                 </div>
                 <button type="submit" class="btn btn-gold w-full mt-4">เข้าสู่ระบบ</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal-overlay" onclick="closeModal(event, 'calendarModal')">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeModal(null, 'calendarModal')"><i class="ph ph-x"></i></button>
+            <h2 class="text-gold text-center mb-4">ปฏิทินกิจกรรมวัดปรกฟ้า</h2>
+            
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-align: center;">
+                <i class="ph ph-calendar-check" style="font-size: 4rem; color: var(--gold-main); margin-bottom: 15px;"></i>
+                <h3 style="color: #fff; margin-bottom: 10px;">ระบบปฏิทินกิจกรรมเต็มรูปแบบ</h3>
+                <p style="color: #ccc; margin-bottom: 20px; line-height: 1.6;">กำลังอยู่ในระหว่างการพัฒนา เพื่อให้ญาติโยมสามารถติดตามกำหนดการ งานบุญ และกิจกรรมต่างๆ ของทางวัดได้อย่างสะดวกยิ่งขึ้นครับ</p>
+                
+                <div style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; display: inline-block; width: 100%;">
+                    <h4 style="color: var(--gold-main); margin-bottom: 10px; font-size: 1.1rem;"><i class="ph ph-push-pin"></i> กิจกรรมที่กำลังจะมาถึง</h4>
+                    <ul id="dynamicModalCalendarList" style="color: #ddd; list-style-type: none; padding: 0; margin: 0;">
+                        <p class="text-center text-light" style="padding: 10px 0;"><i class="ph ph-spinner ph-spin" style="margin-right: 5px;"></i> กำลังโหลดข้อมูล...</p>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
