@@ -236,7 +236,60 @@ function renderDynamicContent(rows) {
     }
 }
 
-// Initialize fetch when DOM is loaded
+// Dynamic Calendar Rendering
+function renderCalendar() {
+    const calendarGrid = document.getElementById('calendarGrid');
+    const monthLabel = document.getElementById('calendarMonthLabel');
+    if (!calendarGrid || !monthLabel) return;
+    
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth();
+    const today = now.getDate();
+    
+    const thaiMonths = [
+        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+        "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+    ];
+    
+    // Set label (Thai Year = currentYear + 543)
+    monthLabel.innerText = `${thaiMonths[currentMonth]} ${currentYear + 543}`;
+    
+    // Build Header
+    let html = `
+        <div class="cal-day-header">อา</div>
+        <div class="cal-day-header">จ</div>
+        <div class="cal-day-header">อ</div>
+        <div class="cal-day-header">พ</div>
+        <div class="cal-day-header">พฤ</div>
+        <div class="cal-day-header">ศ</div>
+        <div class="cal-day-header">ส</div>
+    `;
+    
+    // Get first day of the month (0 = Sunday, 1 = Monday, ...)
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    // Get number of days in the current month
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    
+    // Add empty days for the first week
+    for (let i = 0; i < firstDay; i++) {
+        html += `<div class="cal-day empty"></div>`;
+    }
+    
+    // Add actual days and highlight today
+    for (let i = 1; i <= daysInMonth; i++) {
+        if (i === today) {
+            html += `<div class="cal-day highlight">${i}</div>`;
+        } else {
+            html += `<div class="cal-day">${i}</div>`;
+        }
+    }
+    
+    calendarGrid.innerHTML = html;
+}
+
+// Initialize fetch and calendar when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     fetchGoogleSheetsData();
+    renderCalendar();
 });
