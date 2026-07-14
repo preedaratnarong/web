@@ -117,3 +117,28 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
+// Copy Account Number
+function copyAccountNumber() {
+    const accountNumber = document.getElementById('accountNumber').innerText;
+    // Remove dashes for easier pasting into bank apps
+    const cleanNumber = accountNumber.replace(/-/g, '');
+    
+    navigator.clipboard.writeText(cleanNumber).then(() => {
+        const copyBtn = document.getElementById('copyBtn');
+        const originalContent = copyBtn.innerHTML;
+        
+        copyBtn.innerHTML = '<i class="ph ph-check"></i> คัดลอกแล้ว';
+        copyBtn.style.background = '#4CAF50';
+        copyBtn.style.color = '#fff';
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = originalContent;
+            copyBtn.style.background = 'var(--gold-main)';
+            copyBtn.style.color = '#000';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        alert('ไม่สามารถคัดลอกได้ กรุณาคัดลอกด้วยตัวเอง');
+    });
+}
